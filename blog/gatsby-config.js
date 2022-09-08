@@ -3,14 +3,21 @@ module.exports = {
     title: `Gatsby Blog`,
     description: `ITDEV-164 Gatsby Blog.`,
     author: `Trevor Knowles`,
-    contact:{
-      name: 'Trevor Knowles',
-      company: 'Blogs Inc.',
-      address: 'PO Box 1234'
-    } 
+    contact: {
+      name: "Trevor Knowles",
+      company: "Blogs Inc.",
+      address: "PO Box 1234",
+    },
   },
   plugins: [
     `gatsby-plugin-image`,
+    {
+      resolve: 'gatsby-source-contentful',
+      options: {
+        spaceId: 'x6mpec57tfpe',
+        accessToken: '1no4r2T2LeKP7BbhGRxfFvsFQBAnBsRl-myo0biuWg8'
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
