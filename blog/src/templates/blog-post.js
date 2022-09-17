@@ -1,6 +1,6 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Layout from "../components/layout"
+import React from 'react';
+import { graphql } from 'gatsby';
+import Layout from '../components/layout';
 
 const BlogPost = ({ data }) => {
   const { title, body } = data.contentfulBlogPost
@@ -12,7 +12,7 @@ const BlogPost = ({ data }) => {
         dangerouslySetInnerHTML={{ __html: body.childMarkdownRemark.html }}
       ></div>
     </Layout>
-  )
+  );
 }
 
 export default BlogPost
