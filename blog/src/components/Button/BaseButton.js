@@ -7,6 +7,7 @@ const Reset = styled(Button)`
   background: none;
   box-shadow: none;
   font-weight: normal;
+  border-radius: 0;
   cursor: pointer;
 `
 
