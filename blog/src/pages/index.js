@@ -1,26 +1,32 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
-
+import { Box, Card, Image, Heading } from "rebass"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import { List, ListItem } from "../components/List"
-import * as styles from "../components/index.module.css"
+import styled from "styled-components"
 
+const Grid = styled(Box)`
+  box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  display: grid;
+  gap: 100px;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+`
 const IndexPage = ({ data }) => (
   <Layout>
     <Seo title="Home" />
-    <List width={[1, 2 / 3, 7 / 8]} p={2}>
+    <Grid>
       {data.allContentfulBlogPost.edges.map(edge => (
-        <ListItem p={3} key={edge.node.id}>
-          <Link to={edge.node.slug}>{edge.node.title}</Link>
-          <div>
-            <GatsbyImage image={edge.node.heroImage.gatsbyImageData} />
-          </div>
+        <Card key={edge.node.id} width={256} p={3}>
+          <Link to={edge.node.slug}>
+            <Image src={edge.node.heroImage.url} alt="hero image" />
+          </Link>
+          <Heading>{edge.node.title}</Heading>
           <div>{edge.node.body.childMarkdownRemark.excerpt}</div>
-        </ListItem>
+        </Card>
       ))}
-    </List>
+    </Grid>
   </Layout>
 )
 
@@ -42,10 +48,11 @@ export const query = graphql`
             }
           }
           heroImage {
+            url
             gatsbyImageData(
               layout: CONSTRAINED
-              placeholder: BLURRED
               width: 600
+              placeholder: BLURRED
             )
           }
         }
