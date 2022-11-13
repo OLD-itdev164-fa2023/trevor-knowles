@@ -1,9 +1,11 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
-import { Box, Card, Image, Heading } from "rebass"
+import { GatsbyImage } from "gatsby-plugin-image"
+import styled from "styled-components"
+import { Box, Card, Heading } from "rebass"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import styled from "styled-components"
+import * as styles from "../components/index.module.css"
 
 const Grid = styled(Box)`
   box-sizing: border-box;
@@ -13,14 +15,15 @@ const Grid = styled(Box)`
   gap: 100px;
   grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
 `
+
 const IndexPage = ({ data }) => (
   <Layout>
     <Seo title="Home" />
     <Grid>
       {data.allContentfulBlogPost.edges.map(edge => (
-        <Card key={edge.node.id} width={256} p={3}>
+        <Card width={256} p={3} key={edge.node.id}>
           <Link to={edge.node.slug}>
-            <Image src={edge.node.heroImage.url} alt="hero image" />
+            <GatsbyImage image={edge.node.heroImage.gatsbyImageData} />
           </Link>
           <Heading>{edge.node.title}</Heading>
           <div>{edge.node.body.childMarkdownRemark.excerpt}</div>
@@ -30,6 +33,11 @@ const IndexPage = ({ data }) => (
   </Layout>
 )
 
+/**
+ * Head export to define metadata for the page
+ *
+ * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
+ */
 export const Head = () => <Seo title="Home" />
 
 export default IndexPage
@@ -48,11 +56,10 @@ export const query = graphql`
             }
           }
           heroImage {
-            url
             gatsbyImageData(
               layout: CONSTRAINED
-              width: 600
               placeholder: BLURRED
+              width: 600
             )
           }
         }

@@ -1,8 +1,8 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import * as React from "react"
-import { Flex } from "rebass"
+import PropTypes from "prop-types"
+import { Link } from "gatsby"
 import styled, { ThemeConsumer } from "styled-components"
+import { Flex } from "rebass"
 import { H1 } from "../Heading"
 import { SearchButton } from "../Button"
 import { Section } from "../Section"
@@ -17,19 +17,14 @@ const Outer = styled.header`
   justify-content: space-between;
 `
 
-const Inner = styled.header`
-  margin: 0 auto;
-`
-
 const StyledLink = styled(Link)`
   color: white;
   text-decoration: none;
   margin: 0 10px;
   &:hover {
-    color: lightgrey;
+    color: lightgray;
   }
 `
-
 const Image = styled.img`
   margin: 0;
 `
@@ -45,45 +40,43 @@ const Title = styled(H1)`
 `
 
 const MediaQuery = styled.div`
-  @media (max-width: 450px) {
+  @media (max-width: 600px) {
     display: none;
   }
 `
 
 const Header = ({ siteTitle }) => (
   <Outer>
-    <Inner>
-      <Section flex>
-        <Section
-          width={1 / 12}
-          flex
-          flexDirection="column"
-          justifyContent="center"
-        >
-          <ThemeConsumer>
-            {theme => <Image src={theme.images.mainHeaderImage} />}
-          </ThemeConsumer>
-        </Section>
-        <Section
-          width={11 / 12}
-          flex
-          flexDirection="column"
-          justifyContent="center"
-        >
-          <Nav>
-            <Title>
-              <StyledLink to="/">{siteTitle}</StyledLink>
-            </Title>
-            <MediaQuery>
-              <StyledLink to="/">Home</StyledLink>
-              <StyledLink to="/about">About</StyledLink>
-              <StyledLink to="/contact">Contact</StyledLink>
-            </MediaQuery>
-            <SearchButton variant="contrast" />
-          </Nav>
-        </Section>
+    <Section flex>
+      <Section
+        width={1 / 12}
+        flex
+        flexDirection="column"
+        justifyContent="center"
+      >
+        <ThemeConsumer>
+          {theme => <Image src={theme.images.mainHeaderImage} />}
+        </ThemeConsumer>
       </Section>
-    </Inner>
+      <Section
+        width={11 / 12}
+        flex
+        flexDirection="column"
+        justifyContent="center"
+      >
+        <Nav>
+          <Title>
+            <StyledLink to="/">{siteTitle}</StyledLink>
+          </Title>
+          <MediaQuery>
+            <StyledLink to="/">Home</StyledLink>
+            <StyledLink to="/about">About</StyledLink>
+            <StyledLink to="/contact">Contact</StyledLink>
+          </MediaQuery>
+          <SearchButton variant="contrast" />
+        </Nav>
+      </Section>
+    </Section>
   </Outer>
 )
 
