@@ -11,7 +11,7 @@ const icons = {
 }
 
 const theme = {
-  space: [0, 4, 8, 16, 32, 64, 128, 265, 512],
+  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   colors: {
     grays: {
       // from light to dark
